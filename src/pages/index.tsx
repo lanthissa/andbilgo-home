@@ -7,7 +7,10 @@ type TechnologyCardProps = {
   description: string;
   documentation: string;
 };
-
+type NameProps = {
+  firstName: string,
+  lastName: string
+};
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
 
@@ -20,6 +23,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
+        <NameCard 
+          firstName="Andrew" 
+          lastName="Bilgore" 
+        />
         <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-700">
           Create <span className="text-purple-300">T3</span> App
         </h1>
@@ -53,7 +60,16 @@ const Home: NextPage = () => {
     </>
   );
 };
-
+const NameCard = ({
+  firstName,
+  lastName
+}: NameProps) => {
+  return (
+    <section className="justify-center border-grey-500 rounded">
+      <h2>{firstName} {lastName}</h2>
+    </section>
+  )
+}
 const TechnologyCard = ({
   name,
   description,
