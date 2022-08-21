@@ -13,3 +13,11 @@ datasource db {
 model Example {
     id String @id @default(cuid())
 }
+
+model Users {
+    id String @id @default(cuid())
+    firstname String 
+    lastname String
+    createAt DateTime @default(now())
+    active Boolean @default(true)
+}
