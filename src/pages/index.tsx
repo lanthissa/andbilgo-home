@@ -7,10 +7,7 @@ type TechnologyCardProps = {
   description: string;
   documentation: string;
 };
-type NameProps = {
-  firstName: string,
-  lastName: string
-};
+
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
 
@@ -22,15 +19,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4">
-        <NameCard 
-          firstName="Andrew" 
-          lastName="Bilgore" 
-        />
-        <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-700">
-          Create <span className="text-purple-300">T3</span> App
+      <main className="container mx-auto flex flex-col items-center justify-center min-h-screen p-4 ">
+        <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-poimandres-body-text">
+        <span className="text-poimandres-detail-text"></span>Andrew <span className="text-poimandres-detail-text"></span>Bilgore
         </h1>
-        <p className="text-2xl text-gray-700">This stack uses:</p>
+        <p className="text-2xl text-poimandres-detail-text">This stack uses:</p>
         <div className="grid gap-3 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
           <TechnologyCard
             name="NextJS"
@@ -60,16 +53,7 @@ const Home: NextPage = () => {
     </>
   );
 };
-const NameCard = ({
-  firstName,
-  lastName
-}: NameProps) => {
-  return (
-    <section className="justify-center">
-      <h2 className=" text-lg text-gray-700">{firstName} {lastName}</h2>
-    </section>
-  )
-}
+
 const TechnologyCard = ({
   name,
   description,
@@ -77,8 +61,8 @@ const TechnologyCard = ({
 }: TechnologyCardProps) => {
   return (
     <section className="flex flex-col justify-center p-6 duration-500 border-2 border-gray-500 rounded shadow-xl motion-safe:hover:scale-105">
-      <h2 className="text-lg text-gray-700">{name}</h2>
-      <p className="text-sm text-gray-600">{description}</p>
+      <h2 className="text-lg text-poimandres-detail-text">{name}</h2>
+      <p className="text-sm text-poimandres-body-text-2">{description}</p>
       <a
         className="mt-3 text-sm underline text-violet-500 decoration-dotted underline-offset-2"
         href={documentation}
