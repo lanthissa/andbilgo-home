@@ -2,12 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { getParsedType } from "zod";
 import { trpc } from "../utils/trpc";
+import DisplayCard from "../components/DisplayCard";
 
-type TechnologyCardProps = {
-  name: string;
-  description: string;
-  documentation: string;
-};
 
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
@@ -28,22 +24,22 @@ const Home: NextPage = () => {
           {firstUser.data ? <p> Created at: {firstUser.data.createAt.toString()}</p> : <p>Loading..</p>}
         </div>
         <div className="grid gap-3 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
-          <TechnologyCard
+          <DisplayCard
             name="NextJS"
             description="The React framework for production"
             documentation="https://nextjs.org/"
           />
-          <TechnologyCard
+          <DisplayCard
             name="TypeScript"
             description="Strongly typed programming language that builds on JavaScript, giving you better tooling at any scale"
             documentation="https://www.typescriptlang.org/"
           />
-          <TechnologyCard
+          <DisplayCard
             name="TailwindCSS"
             description="Rapidly build modern websites without ever leaving your HTML"
             documentation="https://tailwindcss.com/"
           />
-          <TechnologyCard
+          <DisplayCard
             name="tRPC"
             description="End-to-end typesafe APIs made easy"
             documentation="https://trpc.io/"
@@ -54,27 +50,6 @@ const Home: NextPage = () => {
         </div>
       </main>
     </>
-  );
-};
-
-const TechnologyCard = ({
-  name,
-  description,
-  documentation,
-}: TechnologyCardProps) => {
-  return (
-    <section className="flex flex-col justify-center p-6 duration-500 border-2 border-gray-500 rounded shadow-xl motion-safe:hover:scale-105">
-      <h2 className="text-lg text-poimandres-detail-text">{name}</h2>
-      <p className="text-sm text-poimandres-body-text-2">{description}</p>
-      <a
-        className="mt-3 text-sm underline text-violet-500 decoration-dotted underline-offset-2"
-        href={documentation}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Documentation
-      </a>
-    </section>
   );
 };
 
