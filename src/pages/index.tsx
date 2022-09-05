@@ -3,9 +3,13 @@ import Head from "next/head";
 import { getParsedType } from "zod";
 import { trpc } from "../utils/trpc";
 import DisplayCard from "../components/DisplayCard";
-
+import ButtonWriter from "../components/AddButton";
 
 const Home: NextPage = () => {
+  const foo = (num: number, word: string) =>  {
+    console.log(word + " " + num);
+
+  };
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
   const firstUser = trpc.useQuery(["user.first"]);
   return (
@@ -23,6 +27,8 @@ const Home: NextPage = () => {
         <div className="pt-6 text-2xl text-poimandres-detail-text flex justify-center items-center w-full">
           {firstUser.data ? <p> Created at: {firstUser.data.createAt.toString()}</p> : <p>Loading..</p>}
         </div>
+        <div className="p-2"> </div>
+        <ButtonWriter bodytext="Foo"/>
         <div className="grid gap-3 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3">
           <DisplayCard
             name="NextJS"
@@ -44,9 +50,6 @@ const Home: NextPage = () => {
             description="End-to-end typesafe APIs made easy"
             documentation="https://trpc.io/"
           />
-        </div>
-        <div className="pt-6 text-2xl text-blue-500 flex justify-center items-center w-full">
-          {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>}
         </div>
       </main>
     </>
